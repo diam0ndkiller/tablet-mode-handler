@@ -21,13 +21,25 @@ sudo apt install xfce4-desktop xfce4-panel-profiles acpid
 ```
 
 ## Setup
-Clone this repo. First, edit the two files inside of `etc-acpi-events` to match the location of the script on your machine. If needed, also edit the event ID used to trigger switching. Afterwards, copy the two files into `/etc/acpi/events/`
+Clone this repo.
+### Service setup
+First, edit the two files inside of `etc-acpi-events` to match the location of the script on your machine. If needed, also edit the event ID used to trigger switching. Afterwards, copy the two files into `/etc/acpi/events/`
 ```bash
 sudo mkdir -p /etc/acpi/events
 sudo cp etc-acpi-events/* /etc/acpi/events/
 ```
 
+Enable `acpid`, if not done automatically by running
+```bash
+sudo systemctl enable acpid
+```
+
 Also make sure to open the `tablet_mode_handler_root.py` file and replace `diam0ndkiller` with your active logged in user.
+
+### Configuration
+Open the main `tablet_mode_handler.py` script and change the `OUTPUT`, `INPUT` and `TOUCHPAD` variables. You can find the needed display output by running `xrandr` and the touchscreen and touchpad inputs by running `xinput`.
+
+If desired, change the `LAPTOP_DPI`, `TABLET_DPI` and `APP_NAME` values.
 
 Before testing, run
 ```bash
@@ -36,11 +48,5 @@ xfce4-panel-profiles save panel_backups/tablet_mode.panelbackup
 ```
 to save your current panel layout configuration into BOTH the laptop and tablet mode presets.
 
-If desired, open the main `tablet_mode_handler.py` script to change your preferred DPI settings for laptop and tablet mode.
-
-Enable `acpid`, if not done automatically by running
-```bash
-sudo systemctl enable acpid
-```
 
 Then, reboot your system. If everything is working, converting the laptop should trigger the script and re-load your panel. A notification confirms the script ran. Now in tablet mode you can edit your panels to make them more touch friendly, if so required. When switching back, the script will automatically save the current layout for future use in tablet mode and switch back to your previous preset.
