@@ -27,16 +27,16 @@ sudo mkdir -p /etc/acpi/events
 sudo cp etc-acpi-events/* /etc/acpi/events/
 ```
 
-Before testing, make sure to run
+Also make sure to open the `tablet_mode_handler_root.py` file and replace `diam0ndkiller` with your active logged in user.
+
+Before testing, run
 ```bash
 xfce4-panel-profiles save panel_backups/laptop_mode.panelbackup
 xfce4-panel-profiles save panel_backups/tablet_mode.panelbackup
 ```
 to save your current panel layout configuration into BOTH the laptop and tablet mode presets.
 
-If needed, open the main `tablet_mode_handler.py` script to change your preferred DPI settings for laptop and tablet mode.
-
-Also make sure to open the `tablet_mode_handler_root.py` file and insert your logged in username into `[username]`.
+If desired, open the main `tablet_mode_handler.py` script to change your preferred DPI settings for laptop and tablet mode.
 
 Enable `acpid`, if not done automatically by running
 ```bash
