@@ -1,0 +1,2 @@
+event=video/tabletmode TBLT 0000008A 00000001
+action=/home/diam0ndkiller/scripts/tablet_mode/tablet_mode_handler_root.py enable
