@@ -6,11 +6,22 @@ import sys
 WORKDIR=os.path.dirname(os.path.abspath(sys.argv[0]))
 os.chdir(WORKDIR)
 
+
+
+
+
 APP_NAME = "Tablet Mode Handler"
 
 OUTPUT = "eDP-1"
 INPUT = "Elan Touchscreen"
 TOUCHPAD = "Elan Touchpad"
+
+LAPTOP_MODE_DPI = 86
+TABLET_MODE_DPI = 96
+
+
+
+
 
 INPUT_ROTATION_MAPPING = {
     "normal": "1 0 0  0 1 0  0 0 1",
@@ -30,7 +41,7 @@ def enable_tablet_mode():
     save_current_mode(current_mode)
 
     toggle_touchpad(False)
-    set_dpi(96)
+    set_dpi(TABLET_MODE_DPI)
     save_panel_backup("laptop_mode")
     load_panel_backup("tablet_mode")
     send_notification("tablet", APP_NAME, "Switched to Tablet Mode")
@@ -42,7 +53,7 @@ def disable_tablet_mode():
     save_current_mode(current_mode)
 
     toggle_touchpad(True)
-    set_dpi(86)
+    set_dpi(LAPTOP_MODE_DPI)
     save_panel_backup("tablet_mode")
     load_panel_backup("laptop_mode")
     send_notification("laptopconnected", APP_NAME, "Switched to Laptop Mode")
